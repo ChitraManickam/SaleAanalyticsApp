@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 using SaleAanalyticsApp.Models;
@@ -75,7 +75,7 @@ public class SaleRecordsController : ControllerBase
     }
 
     [HttpPut("UpdateSaleRecordById")]
-    public async Task<IActionResult> UpdateSaleRecord(SaleRecord saleRecord, int id)
+    public async Task<IActionResult> UpdateSaleRecord([FromBody] SaleRecord saleRecord, int id)
     {
         try
         {
@@ -84,7 +84,7 @@ public class SaleRecordsController : ControllerBase
 
             await _unitOfWork.SaleRecords.UpdateAsync(saleRecord);
             logger.Info($"Updated sale record with ID {id}.");
-            return NoContent();
+            return Ok();
         }
         catch (Exception ex)
         {
@@ -94,13 +94,13 @@ public class SaleRecordsController : ControllerBase
     }
 
     [HttpDelete("DeleteSaleRecordId")]
-    public async Task<IActionResult> DeleteSaleRecordId(int id)
+    public async Task<IActionResult> DeleteSaleRecordId([FromBody] int id)
     {
         try
         {
             await _unitOfWork.SaleRecords.DeleteAsync(id);
             logger.Info($"Deleted sale record with ID {id}.");
-            return NoContent();
+            return Ok();
         }
         catch (Exception ex)
         {
