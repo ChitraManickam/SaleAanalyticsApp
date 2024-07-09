@@ -24,6 +24,17 @@ Copy code
 "ConnectionStrings": {
   "DefaultConnection": "Server=your-server;Database=your-database;Trusted_Connection=True;"
 }
+To create Table to maniplate the data. Execute below query.
+CREATE TABLE SaleRecord (
+    Id INT PRIMARY KEY IDENTITY,
+    ProductName NVARCHAR(MAX) NOT NULL,
+    Price DECIMAL(18, 2) NOT NULL,
+    SaleDate DATETIME NOT NULL,
+    Region NVARCHAR(MAX) NOT NULL,
+    Active BIT NOT NULL,
+    CreatedOn DATETIME NOT NULL
+);
+
 JWT Secret Key
 
 Open appsettings.json.
